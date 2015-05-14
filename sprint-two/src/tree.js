@@ -17,33 +17,15 @@ treeMethods.addChild = function(value){
 };
 
 treeMethods.contains = function(target){
-/*
-  var check = false;
-  var recurseTree = function(target, treeNode) {
-    if (treeNode.value === target) {
-      check = true;
-    }
-    if (treeNode.children !== undefined) {
-      for (var i = 0; i < treeNode.children.length; i++) {
-        recurseTree(target, treeNode.children[i]);
-      }
-    }
-  };
-  recurseTree(target, this);
-  return check;
-*/
-
   var branch = this;
   if (branch.value === target) {
     return true;
-    //break;
   }
   for (var i = 0; i < branch.children.length; i++) {
     if (branch.children[i] !== undefined) {
       if(branch.children[i].contains(target)) {
         return true;
       }
-      //branch.children[i].contains(target);
     }
   }
   return false;
