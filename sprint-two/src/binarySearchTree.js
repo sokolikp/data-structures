@@ -11,17 +11,17 @@ var bstMethods = {};
 
 bstMethods.insert = function(value) {
   //var branch = BinarySearchTree(val);
-  if (this.value < value) {
-    if (this.left.value === null) {
-      this.left.value = BinarySearchTree(value);
+  if (value < this.value) {
+    if (this.left === null) {
+      this.left = BinarySearchTree(value);
     }
     else {
       this.left.insert(value);
     }
   }
   else {
-    if (this.right.value === null) {
-      this.right.value = BinarySearchTree(value);
+    if (this.right === null) {
+      this.right = BinarySearchTree(value);
     }
     else {
       this.right.insert(value);
@@ -30,11 +30,37 @@ bstMethods.insert = function(value) {
 };
 
 bstMethods.contains = function(value) {
-
+  var currentTree = this;
+  if(currentTree.value === value) {
+    return true;
+  }
+  else if(value < currentTree.value) {
+    if(currentTree.left === null) {
+      return false;
+    }
+    else {
+      return currentTree.left.contains(value);
+    }
+  }
+  else {
+    if(currentTree.right === null) {
+      return false;
+    }
+    else {
+      return currentTree.right.contains(value);
+    }
+  }
 };
 
-bstMethods.depthFirstLog = function(value) {
-
+bstMethods.depthFirstLog = function(func) {
+  var currentTree = this;
+  func(this.value);
+  if (this.left !== null) {
+    this.left.depthFirstLog(func);
+  }
+  if (this.right !== null) {
+    this.right.depthFirstLog(func);
+  }
 };
 
 //var Node = function (value) {
