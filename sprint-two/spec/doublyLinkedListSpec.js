@@ -74,5 +74,21 @@ describe('doublyLinkedList', function() {
     expect(doublyLinkedList.contains(4)).to.equal(false);
   });
 
+  it('should return first and last value of "null" when value is added and removed from tail', function(){
+    doublyLinkedList.addToTail(4);
+    //doublyLinkedList.addToTail(5);
+    doublyLinkedList.removeTail();
+    expect(doublyLinkedList.head).to.equal(null);
+    expect(doublyLinkedList.tail).to.equal(null);
+  });
+
+  it('should return first and last value of "null" when value is added and removed from head', function(){
+    doublyLinkedList.addToHead(4);
+    //doublyLinkedList.addToTail(5);
+    doublyLinkedList.removeHead();
+    expect(doublyLinkedList.head).to.equal(null);
+    expect(doublyLinkedList.tail).to.equal(null);
+  });
+
   // add more tests here to test the functionality of linkedList
 });
