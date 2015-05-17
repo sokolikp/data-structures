@@ -63,6 +63,34 @@ bstMethods.depthFirstLog = function(func) {
   }
 };
 
+bstMethods.breadthFirstLog = function(func) {
+  var currentTree = this;
+  var treeNodes = [];
+  var currentLevel = [];
+  currentLevel.push(currentTree);
+
+  treeNodes.push(currentLevel);
+  var lastLevel = currentLevel;
+  while (lastLevel.length !== 0) {
+    currentLevel = [];
+    for (var i = 0; i < lastLevel.length; i++) {
+      if (lastLevel[i].left !== null) {
+        currentLevel.push(lastLevel[i].left);
+      }
+      if (lastLevel[i].right !== null) {
+        currentLevel.push(lastLevel[i].right);
+      }
+    }
+    treeNodes.push(currentLevel);
+    lastLevel = currentLevel;
+  }
+  for(var i=0; i<treeNodes.length; i++) {
+    for(var j=0; j<treeNodes[i].length; j++) {
+      func(treeNodes[i][j].value);
+    }
+  }
+};
+
 //var Node = function (value) {
 //  return {value: value, right: null, left: null};
 
